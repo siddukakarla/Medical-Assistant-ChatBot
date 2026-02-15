@@ -49,9 +49,12 @@ async def ask_question(question: str = Form(...)):
         retriever = SimpleRetriever(docs)
         chain = get_llm_chain(retriever)
         result = query_chain(chain, question)
-
+        if isinstance(result, dict) and "response" in result:
+            clean_result = result["response"]
+        else:
+            clean_result = result
         logger.info("query successful")
-        return result
+         return {"response": clean_result} 
 
     except Exception as e:
         logger.exception("Error processing question")
