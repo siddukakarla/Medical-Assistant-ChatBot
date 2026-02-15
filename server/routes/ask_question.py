@@ -54,7 +54,7 @@ async def ask_question(question: str = Form(...)):
         else:
             clean_result = result
         logger.info("query successful")
-         return {"response": clean_result} 
+        return {"response": clean_result} 
 
     except Exception as e:
         logger.exception("Error processing question")

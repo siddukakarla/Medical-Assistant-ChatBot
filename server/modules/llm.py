@@ -18,9 +18,8 @@ def get_llm_chain(retriever):
     prompt = PromptTemplate(
         input_variables=["context", "question"],
         template="""
-You are **MediBot**, an AI-powered assistant trained to help users understand medical documents and health-related questions.
-
-Your job is to provide clear, accurate, and helpful responses based **only on the provided context**.
+You are a professional AI assistant. Your job is to provide clear, accurate, and helpful responses 
+based **only on the information provided in the context** below.
 
 ---
 
@@ -33,11 +32,12 @@ Your job is to provide clear, accurate, and helpful responses based **only on th
 ---
 
 💬 **Answer**:
-- Respond in a calm, factual, and respectful tone.
-- Use simple explanations when needed.
-- If the context does not contain the answer, say: "I'm sorry, but I couldn't find relevant information in the provided documents."
-- Do NOT make up facts.
-- Do NOT give medical advice or diagnoses.
+- Respond in a professional, calm, and respectful tone.
+- Base your answer **only on the provided context**.
+- If the context does not contain the information needed, politely say: 
+  "I'm sorry, but I don't have enough information to answer that based on the provided context."
+- Do NOT make up facts or provide information outside of the context.
+- Use simple and clear explanations where possible.
 """
     )
 
